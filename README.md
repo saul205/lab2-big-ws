@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/saul205/lab2-big-ws.svg?branch=master)](https://travis-ci.com/UNIZAR-30246-WebEngineering/lab2-big-ws)
+[![Build Status](https://travis-ci.com/UNIZAR-30246-WebEngineering/lab2-big-ws.svg?branch=master)](https://travis-ci.com/UNIZAR-30246-WebEngineering/lab2-big-ws)
 # Web Engineering 2020-2021 / Big Web Services
 **In this assignment your PR must only modify the `README.md` file**. Please, go to the [Wiki](https://github.com/UNIZAR-30246-WebEngineering/lab2-big-ws/wiki) in order to get the instructions for this assignment.
 
