@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package translator;
+
+option java_multiple_files = true;
+option java_package = "translator.grpc";
+option java_outer_classname = "TranslatorProto";
+
+// The greeting service definition.
+service TranslatorService {
+    // Sends a greeting
+    rpc Translate (TranslationRequest) returns (TranslationReply) {
+    }
+}
+
+// The request message containing the user's name.
+message TranslationRequest {
+    string langFrom = 1;
+    string langTo = 2;
+    string text = 3;
+}
+
+// The response message containing the greetings
+message TranslationReply {
+    string message = 1;
+}
