@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.ClassUtils;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
+
 import translator.Application;
 import translator.web.ws.schema.GetTranslationRequest;
 import translator.web.ws.schema.GetTranslationResponse;
@@ -36,7 +37,7 @@ public class TranslatorEndpointTest {
     marshaller.afterPropertiesSet();
   }
 
-  @Test
+  @Test(expected = RuntimeException.class) // Excepción de DummyTranslator
   public void testSendAndReceive() {
     GetTranslationRequest request = new GetTranslationRequest();
     request.setLangFrom("en");
@@ -44,6 +45,20 @@ public class TranslatorEndpointTest {
     request.setText("This is a test of translation service");
     Object response = new WebServiceTemplate(marshaller).marshalSendAndReceive("http://localhost:"
             + port + "/ws", request);
+    assertNotNull(response);
+    assertThat(response, instanceOf(GetTranslationResponse.class));
+    GetTranslationResponse translation = (GetTranslationResponse) response;
+    assertThat(translation.getTranslation(), is("I don't know how to translate from en to es the text 'This is a test of translation service'"));
+  }
+
+  @Test(expected = org.springframework.ws.client.WebServiceTransportException.class)
+  public void testServerDown() {
+    GetTranslationRequest request = new GetTranslationRequest();
+    request.setLangFrom("en");
+    request.setLangTo("es");
+    request.setText("This is a test of translation service");
+    Object response = new WebServiceTemplate(marshaller).marshalSendAndReceive("http://localhost:"
+            + port + "/server-down", request);
     assertNotNull(response);
     assertThat(response, instanceOf(GetTranslationResponse.class));
     GetTranslationResponse translation = (GetTranslationResponse) response;
