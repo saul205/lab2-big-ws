@@ -27,10 +27,6 @@ protobuf {
     protoc {
         artifact = "com.google.protobuf:protoc:${protobufVersion}"
     }
-    generatedFilesBaseDir = "$projectDir/src/generated"
-    clean {
-        delete generatedFilesBaseDir
-    }
     plugins {
         grpc {
             artifact = "io.grpc:protoc-gen-grpc-java:${io_grpcVersion}"
@@ -45,6 +41,9 @@ protobuf {
 
 sourceSets.main.java.srcDirs += "${buildDir}/generated-sources/xjc"
 compileJava.dependsOn "xjcGeneration"
+
+sourceSets.main.java.srcDirs += "build/generated/source/proto/main/grpc/traductor"
+sourceSets.main.java.srcDirs += "build/generated/source/proto/main/java/traductor"
 
 dependencies {
     compile "org.springframework.boot:spring-boot-starter-web-services"
