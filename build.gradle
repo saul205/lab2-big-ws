@@ -21,9 +21,6 @@ xjcGeneration {
 sourceSets.main.java.srcDirs += "${buildDir}/generated-sources/xjc"
 compileJava.dependsOn "xjcGeneration"
 
-sourceSets.main.java.srcDirs += "build/generated/source/proto/main/grpc/traductor"
-sourceSets.main.java.srcDirs += "build/generated/source/proto/main/java/traductor"
-
 dependencies {
     compile "org.springframework.boot:spring-boot-starter-web-services"
 
