@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import translator.Application;
-import translator.client.TranslatorClientService;
 import translator.domain.TranslatedText;
 
 import static org.junit.Assert.assertEquals;
@@ -18,12 +17,12 @@ import static org.junit.Assert.assertEquals;
 public class TranslatorServiceTest {
 
   @Autowired
-  TranslatorClientService client;
+  TranslatorService translatorService;
 
   @Test(expected = RuntimeException.class)
   public void translateTest() {
-    String algo = client.send("algo");
-    assertEquals("Respuesta incorrecta", "Hello ==> algo".equals("Hello ==> " + algo));
+    TranslatedText translatedText = translatorService.translate("en", "es", "This is a test of translation service");
+    assertEquals("I don't know how to translate from en to es the text 'This is a test of translation service'", translatedText.getTranslation());
   }
 
 }
