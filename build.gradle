@@ -60,7 +60,7 @@ dependencies {
     compile "io.grpc:grpc-protobuf:${io_grpcVersion}"
     compile "io.grpc:grpc-stub:${io_grpcVersion}"
     compile 'org.springframework.boot:spring-boot-starter:2.3.4.RELEASE'
-    compile 'net.devh:grpc-server-spring-boot-starter:2.10.1.RELEASE'
+    compile 'net.devh:grpc-spring-boot-starter:2.10.1.RELEASE'
 
     testCompile "org.springframework.boot:spring-boot-starter-test"
 }
