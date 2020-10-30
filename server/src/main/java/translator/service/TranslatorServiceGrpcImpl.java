@@ -1,9 +1,9 @@
 
 package translator.service;
 
-import traductor.TranslatorServiceGrpc;
-import traductor.TranslatorProto.TranslationRequest;
-import traductor.TranslatorProto.TranslationReply;
+import translator.lib.TranslatorServiceGrpc;
+import translator.lib.TranslatorProto.TranslationRequest;
+import translator.lib.TranslatorProto.TranslationReply;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
 

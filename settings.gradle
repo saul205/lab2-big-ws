@@ -1,0 +1,5 @@
+rootProject.name = 'lab2-big-ws'
+
+include 'lib'
+include 'server'
+include 'client'

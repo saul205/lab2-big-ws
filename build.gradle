@@ -1,46 +1,35 @@
 plugins {
     id "io.spring.dependency-management" version "1.0.10.RELEASE"
     id "org.springframework.boot" version "2.3.4.RELEASE"
-    id "java"
-
-    id "com.google.protobuf" version "0.8.13"
+    id 'com.google.protobuf' version '0.8.13'
+	
+    id 'java'
 }
+
+subprojects {
+
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
+	apply plugin: 'java-library'
+
+	group = 'translator'
+	version = '0.0.1-SNAPSHOT'
+	sourceCompatibility = '1.8'
+
+	repositories {
+		mavenCentral()
+	}
+
+	test {
+		useJUnitPlatform()
+	}
+
+}
+
 repositories {
     mavenCentral()
 }
 
-def protobufVersion = "3.5.1"
-def io_grpcVersion = "1.33.0"
-
-protobuf {
-    protoc {
-        artifact = "com.google.protobuf:protoc:${protobufVersion}"
-    }
-    plugins {
-        grpc {
-            artifact = "io.grpc:protoc-gen-grpc-java:${io_grpcVersion}"
-        }
-    }
-    generateProtoTasks {
-        all()*.plugins {
-            grpc {}
-        }
-    }
-}
-
-sourceSets.main.java.srcDirs += "build/generated/source/proto/main/grpc/traductor"
-sourceSets.main.java.srcDirs += "build/generated/source/proto/main/java/traductor"
-
-dependencies {
-    compile "org.springframework.boot:spring-boot-starter-web-services"
-
-    runtime "org.glassfish.jaxb:jaxb-runtime:2.3.1"
-    runtime "wsdl4j:wsdl4j:1.6.3"
-
-    compile "io.grpc:grpc-protobuf:${io_grpcVersion}"
-    compile "io.grpc:grpc-stub:${io_grpcVersion}"
-    compile 'org.springframework.boot:spring-boot-starter:2.3.4.RELEASE'
-    compile 'net.devh:grpc-spring-boot-starter:2.10.1.RELEASE'
-
-    testCompile "org.springframework.boot:spring-boot-starter-test"
+bootJar {
+	enabled = false
 }
