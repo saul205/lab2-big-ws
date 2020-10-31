@@ -16,11 +16,13 @@ public class TranslatorClientService {
     @GrpcClient("TranslatorService")
     private TranslatorServiceBlockingStub myServiceStub;
 
-    public String send(String name) {
+    public String send(String from, String to, String name) {
         TranslationRequest request = TranslationRequest.newBuilder()
                 .setText(name)
+                .setLangTo(to)
+                .setLangFrom(from)
                 .build();
-        return myServiceStub.translate(request).getMessage();
+        return myServiceStub.translate(request).getTranslation();
     }
 
 }

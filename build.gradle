@@ -43,4 +43,5 @@ dependencies {
     compile 'net.devh:grpc-spring-boot-starter:2.10.1.RELEASE'
 
     testCompile "org.springframework.boot:spring-boot-starter-test"
+    testImplementation "io.grpc:grpc-testing:1.10.1"
 }
